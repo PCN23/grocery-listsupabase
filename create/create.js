@@ -21,3 +21,4 @@ form.addEventListener('submit', async (e) => {
         error.textContent = 'something went wrong';
     }
 });
+

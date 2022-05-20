@@ -15,7 +15,7 @@ export function checkAuth() {
 
 export function redirectIfLoggedIn() {
     if (getUser()) {
-        location.replace('./other-page');
+        location.replace('/create');
     }
 }
 
@@ -34,7 +34,7 @@ export async function signInUser(email, password) {
 export async function logout() {
     await client.auth.signOut();
 
-    return (window.location.href = '../');
+    return (window.location.href = '/');
 }
 
 export async function createListItem(name, quantity) {
@@ -54,6 +54,7 @@ export async function getListItems(){
         return response.data;
     }
 }
+
 
 
 
