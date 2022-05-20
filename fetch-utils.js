@@ -60,6 +60,10 @@ export async function deleteAllListItems() {
     return response.data;
 }
 
+export async function togglePurchased(someId) {
+    const response = await client.from('grocery_list').update ()
+}
+
 
 
 
