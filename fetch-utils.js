@@ -60,11 +60,12 @@ export async function deleteAllListItems() {
     return response.data;
 }
 
-export async function togglePurchased(someId) {
-    const response = await client.from('grocery_list').update ()
+export async function buyListItem(someId) {
+    const response = await client.from('grocery_list').update({ purchased: true }).match({ id: someId });
+    // console.log(response);
+    return response.data;
+
 }
-
-
 
 
 
