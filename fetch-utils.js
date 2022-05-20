@@ -40,20 +40,26 @@ export async function logout() {
 export async function createListItem(name, quantity) {
     const response = await client.from('grocery_list').insert({ name, quantity });
     if (response.error) {
-        console.log.error(response.error.message);
+        console.error(response.error.message);
     } else {
         return response.data;
     }
 }
 
 export async function getListItems(){
-    const response = await client.from('grocery-list').select('*');
+    const response = await client.from('grocery_list').select('*');
     if (response.error) {
-        console.log.error(response.error.message);
+        console.error(response.error.message);
     } else {
         return response.data;
     }
 }
+
+export async function deleteAllListItems() {
+    const response = await client.from('grocery_list').delete().match({ user_id: getUser(). id });
+    return response.data;
+}
+
 
 
 

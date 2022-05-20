@@ -23,7 +23,7 @@
     <!-- <a href="./list.js">Create List</a> -->
     <main>
         <h1>You are logged in!</h1>
-        <form class="food-form">
+        <form id="food-form">
             <label>
                 Quantity:
                 <input type="number" name="quantity" />
@@ -32,9 +32,11 @@
                 Item:
                 <input name="name" />
             </label>
-            <button id="add-items">Add items</button>
+            <button id="submit">Add items</button>
         </form>
         <ul class="list"></ul>
+
+
         <button class="delete">Delete List</button>
     </main>
     <footer>

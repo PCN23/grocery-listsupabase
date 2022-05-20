@@ -1,6 +1,4 @@
-import { checkAuth, createListItem, getListItems, logout } from '../fetch-utils.js';
-
-checkAuth();
+import { checkAuth, createListItem, getListItems, logout, deleteAllListItems } from '../fetch-utils.js';
 
 const error = document.getElementById('error');
 const form = document.getElementById('food-form');
@@ -27,15 +25,15 @@ window.addEventListener('load', async () => {
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const Data = new FormData(form);
-    const item = await createListItem(Data.get('name'), Data.get('quantity'));
-    if (data) {
-        window.location.href = '/list';
-    } else {
-        error.textContent = 'something went wrong';
-    }
-    await fetchAndDisplayList();
-
+    const data = new FormData(form);
+    
+    const newPost = {
+        name: data.get('name'),
+        quantity: data.get ('quantity'),
+    };
+    const resp = await createListItem(newPost.name, newPost.quantity);
+    console.log(resp);
+    fetchAndDisplayList();
 });
 
 async function fetchAndDisplayList() {
@@ -46,14 +44,14 @@ async function fetchAndDisplayList() {
         const listItemEl = document.createElement('p');
 
         listItemEl.classList.add('food-form');
-        listItemEl.textContent = `${item.name} ${item.quantity}`;
+        listItemEl.textContent = ` ${item.quantity} ${item.name}`;
 
         if (item.bought) {
             listItemEl.classList.add('bought');
         } else {
             listItemEl.classList.add('not-bought');
             listItemEl.addEventListener('click', async () => {
-                await buyListItem(item.id);
+                await buyListItem(item);
                 fetchAndDisplayList();
             });
         }
