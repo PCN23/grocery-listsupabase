@@ -1,1 +1,19 @@
 /* add home page styles here */
+
+.auth-container {
+    border: 6px solid rgb(4, 0, 255);
+    border-radius: 10%;
+    padding: 20px;
+    align-items: center;
+    color-scheme: rgb(204, 255, 0);
+    background-color: skyblue;
+}
+#tienda {
+    border: 6px solid red;
+    border-radius: 10%;
+}
+
+.boton {
+    background-color: black;
+    color: gold;
+}

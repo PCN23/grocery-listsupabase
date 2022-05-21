@@ -2,3 +2,8 @@
     text-decoration: line-through;
     color: red;
 }
+
+#logout {
+    background-color: black;
+    color: aqua;
+}
