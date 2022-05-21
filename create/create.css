@@ -7,3 +7,33 @@
     background-color: black;
     color: aqua;
 }
+
+.tiendas {
+    border: 6px solid red;
+}
+
+.delete {
+    background-color: black;
+    color:aqua;
+    align-items: center;
+    
+}
+
+#submit {
+    background-color: black;
+    color:aqua;
+}
+
+#food-form {
+    background-color: black;
+    height: 100px;
+    align-items: center;
+    color:white
+}
+
+#list {
+    background-color: black;
+    height: 100px;
+    align-items: center;
+    color:white
+}
