@@ -1,4 +1,6 @@
+/* eslint-disable indent */
 import { checkAuth, createListItem, getListItems, logout, deleteAllListItems, buyListItem } from '../fetch-utils.js';
+import { renderListItem } from '../render-utils.js';
 
 const error = document.getElementById('error');
 const form = document.getElementById('food-form');
@@ -25,6 +27,7 @@ window.addEventListener('load', async () => {
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
     
     const data = new FormData(form);
     
@@ -35,6 +38,7 @@ form.addEventListener('submit', async (e) => {
     const resp = await createListItem(newPost.name, newPost.quantity);
     console.log(resp);
     fetchAndDisplayList();
+    form.reset();
 });
 
 async function fetchAndDisplayList() {
@@ -42,21 +46,14 @@ async function fetchAndDisplayList() {
     
     listEl.textContent = '';
     for (let item of list) {
-        const listItemEl = document.createElement('p');
+        const listItemEl = renderListItem(item);
+       listItemEl.addEventListener('click', async (e) => {
+           e.preventDefault();
+           await buyListItem(item);
+           fetchAndDisplayList();
+       });
         
-        listItemEl.classList.add('food-form');
-        listItemEl.textContent = ` ${item.quantity} ${item.name}`;
-        
-        console.log(item.purchased);
-        if (item.purchased) {
-            listItemEl.classList.add('bought');
-        } else {
-            // listItemEl.classList.add('not-bought');
-            listItemEl.addEventListener('click', async () => {
-                await buyListItem(item.id);
-                fetchAndDisplayList();
-            });
-        }
         listEl.append(listItemEl);
     }
 }
+fetchAndDisplayList();

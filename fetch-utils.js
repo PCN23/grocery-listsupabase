@@ -44,6 +44,8 @@ export async function createListItem(name, quantity) {
     } else {
         return response.data;
     }
+
+
 }
 
 export async function getListItems(){
@@ -60,9 +62,8 @@ export async function deleteAllListItems() {
     return response.data;
 }
 
-export async function buyListItem(someId) {
-    const response = await client.from('grocery_list').update({ purchased: true }).match({ id: someId });
-    // console.log(response);
+export async function buyListItem(item) {
+    const response = await client.from('grocery_list').update({ purchased: !item.purchased }).match({ id: item.id });
     return response.data;
 
 }
